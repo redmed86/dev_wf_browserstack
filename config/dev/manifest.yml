@@ -1,0 +1,3 @@
+applications:
+- name: develop-angular-demo-app
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
