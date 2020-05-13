@@ -23,6 +23,13 @@ node{
   }
 
   if ("${env.BRANCH_NAME}"=="master"){
+    withCredentials([usernamePassword(credentialsId: 'derek_pcf_creds', passwordVariable: 'PCF_PASS', usernameVariable: 'PCF_USER')]) {
+      stage('Deploy to Development Environment') {
+        sh 'cf login -a https://api.run.pivotal.io -u ${PCF_USER} -p ${PCF_PASS} -s Development'
+        sh 'cf push -f config/dev/manifest.yml'
+      }
+    }
+
     stage('Execute E2E Tests on BS'){
       browserstack('331697ad-449f-4664-bde1-a79f5a14f73e') {
         sh 'npm run wdio-bs'
