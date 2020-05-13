@@ -20,9 +20,10 @@ module.exports = function (config) {
       "karma-junit-reporter",
       "karma-browserstack-launcher",
     ],
+    reporters: ["junit"],
 
     junitReporter: {
-      outputFile: "test_out/unit.xml",
+      outputDir: "karma_junit_reports",
       suite: "unit",
     },
 
@@ -66,15 +67,15 @@ module.exports = function (config) {
         os_version: "10",
         build: "Angular JS App - Local",
       },
-      bs_android: {
-        base: "BrowserStack",
-        device: "Samsung Galaxy S10",
-        os: "Android",
-        real_mobile: true,
-        os_version: "9.0",
-        build: "Angular JS App - Local",
-      },
-      // bs_ios: {
+      // bs_android: {
+      //   base: "BrowserStack",
+      //   device: "Samsung Galaxy S10",
+      //   os: "Android",
+      //   real_mobile: true,
+      //   os_version: "9.0",
+      //   build: "Angular JS App - Local",
+      // },
+      // // bs_ios: {
       //   base: "BrowserStack",
       //   device: "iPhone XS",
       //   os: "ios",
@@ -95,7 +96,8 @@ module.exports = function (config) {
       "bs_chrome_mac",
       "bs_firefox_win10",
       "bs_chrome_win10",
-      "bs_android",
+      // "bs_android",
+      // "bs_ios",
     ],
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher

@@ -23,7 +23,6 @@
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^1.1.2",
     "karma-junit-reporter": "^0.4.1",
-    "karma-sauce-launcher": "1.2.0",
     "protractor": "5.4.2",
     "wdio-chromedriver-service": "^5.0.2"
   },
@@ -33,7 +32,7 @@
     "postupdate-deps": "bower update",
     "lint": "./node_modules/jshint/bin/jshint app/ --exclude /app/bower_components",
     "prestart": "npm install",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",
