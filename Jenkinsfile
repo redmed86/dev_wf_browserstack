@@ -57,6 +57,9 @@ node{
       input 'Waiting for Visual Testing analysis'
     }
   }
-
-  
+post {
+    always {
+        junit 'app/karma_junit_reports'
+    }
+}
 }
