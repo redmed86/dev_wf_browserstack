@@ -1,4 +1,7 @@
 node_modules
-.git/*
+.git
 local.log
 browserstack.err
+.cfignore
+.gitignore
+bower_components
