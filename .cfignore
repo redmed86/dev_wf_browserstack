@@ -4,4 +4,3 @@ local.log
 browserstack.err
 .cfignore
 .gitignore
-bower_components

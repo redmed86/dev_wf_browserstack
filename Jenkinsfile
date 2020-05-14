@@ -26,16 +26,16 @@ node{
     }
   }
 
-//   if ("${env.BRANCH_NAME}"=="feature/local_jenkins"){
-//     stage('Deploy to Development Environment') {
-//       pushToCloudFoundry(
-//         target: 'api.run.pivotal.io',
-//         organization: 'DR Dev Ops',
-//         cloudSpace: 'Development',
-//         credentialsId: 'bs_creds',
-//         manifestChoice: [manifestFile: './config/dev/manifest.yml']
-//       )
-//     }
+  if ("${env.BRANCH_NAME}"=="feature/local_jenkins"){
+    stage('Deploy to Development Environment') {
+      pushToCloudFoundry(
+        target: 'api.run.pivotal.io',
+        organization: 'DR Dev Ops',
+        cloudSpace: 'Development',
+        credentialsId: 'bs_creds',
+        manifestChoice: [manifestFile: './config/dev/manifest.yml']
+      )
+    }
 //     // withCredentials([usernamePassword(credentialsId: 'derek_pcf_creds', passwordVariable: 'PCF_PASS', usernameVariable: 'PCF_USER')]) {
 //     //   stage('Deploy to Development Environment') {
 //     //     sh 'cf login -a https://api.run.pivotal.io -u ${PCF_USER} -p ${PCF_PASS} -s Development'
