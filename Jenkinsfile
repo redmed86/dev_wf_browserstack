@@ -58,8 +58,15 @@ node{
     }
   }
   stage('JUnit Reporter') {
-    sh 'ls -lah app/karma_junit_reports'
-    junit 'app/karma_junit_reports'
+    sh 'ls -lah app/karma_junit_reports/'
+    junit 'app/karma_junit_reports/*.xml'
+  }
+  stage('Full Regression'){
+      echo 'run test code here'
+  }
+
+  stage('Product Owner Review') {
+      input ''
   }
     
 }
