@@ -24,13 +24,20 @@ node{
     }
   }
 
-  if ("${env.BRANCH_NAME}"=="develop"){
-    withCredentials([usernamePassword(credentialsId: 'derek_pcf_creds', passwordVariable: 'PCF_PASS', usernameVariable: 'PCF_USER')]) {
-      stage('Deploy to Development Environment') {
-        sh 'cf login -a https://api.run.pivotal.io -u ${PCF_USER} -p ${PCF_PASS} -s Development'
-        sh 'cf push -f config/dev/manifest.yml'
-      }
-    }
+  if ("${env.BRANCH_NAME}"=="feature/local_jenkins"){
+    pushToCloudFoundry(
+        target: 'api.run.pivotal.io',
+        organization: 'DR Dev Ops',
+        cloudSpace: 'Development',
+        credentialsId: 'bs_creds',
+        manifestChoice: [manifestFile: './config/dev/manifest.yml']
+    )
+    // withCredentials([usernamePassword(credentialsId: 'derek_pcf_creds', passwordVariable: 'PCF_PASS', usernameVariable: 'PCF_USER')]) {
+    //   stage('Deploy to Development Environment') {
+    //     sh 'cf login -a https://api.run.pivotal.io -u ${PCF_USER} -p ${PCF_PASS} -s Development'
+    //     sh 'cf push -f config/dev/manifest.yml'
+    //   }
+    // }
 
     stage('Execute E2E Tests on BS'){
       nodejs('nodejs-14.2') {
