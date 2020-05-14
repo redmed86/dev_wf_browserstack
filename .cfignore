@@ -1,4 +1,4 @@
 node_modules
-.git
+.git/*
 local.log
 browserstack.err
