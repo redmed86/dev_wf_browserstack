@@ -10,9 +10,11 @@ node{
   }
 
   stage ('Build') {
-    //build project dependencies
-    sh 'npm -v'
-    sh 'npm install'
+    nodejs('nodejs-14.2') {
+      //build project dependencies
+      sh 'npm -v'
+      sh 'npm install'
+    }
   }
 
   stage ('Unit Tests') {
@@ -31,8 +33,10 @@ node{
     }
 
     stage('Execute E2E Tests on BS'){
-      browserstack('331697ad-449f-4664-bde1-a79f5a14f73e') {
-        sh 'npm run wdio-bs'
+      nodejs('nodejs-14.2') {
+        browserstack('331697ad-449f-4664-bde1-a79f5a14f73e') {
+          sh 'npm run wdio-bs'
+        } 
       }
     }
   }
