@@ -57,11 +57,8 @@ node{
       input 'Waiting for Visual Testing analysis'
     }
   }
-    post {
-        stage('JUnit Reporter') {
-            always {
-                junit 'app/karma_junit_reports'
-            }
-        }
-    }
+  stage('JUnit Reporter') {
+    junit 'app/karma_junit_reports'
+  }
+    
 }
