@@ -59,6 +59,7 @@ node{
   }
   stage('JUnit Reporter') {
     junit 'app/karma_junit_reports'
+    sh 'ls -lah app/karma_junit_reports'
   }
     
 }
