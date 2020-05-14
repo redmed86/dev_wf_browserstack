@@ -2,6 +2,7 @@
 module.exports = function (config) {
   config.set({
     basePath: "./app",
+    hostname: "bs-local.com",
 
     files: [
       "bower_components/angular/angular.js",
@@ -67,22 +68,22 @@ module.exports = function (config) {
         os_version: "10",
         build: "Angular JS App - Local",
       },
-      // bs_android: {
-      //   base: "BrowserStack",
-      //   device: "Samsung Galaxy S10",
-      //   os: "Android",
-      //   real_mobile: true,
-      //   os_version: "9.0",
-      //   build: "Angular JS App - Local",
-      // },
-      // // bs_ios: {
-      //   base: "BrowserStack",
-      //   device: "iPhone XS",
-      //   os: "ios",
-      //   real_mobile: true,
-      //   os_version: "12",
-      //   build: "Angular JS App - Local",
-      // },
+      bs_android: {
+        base: "BrowserStack",
+        device: "Samsung Galaxy S10",
+        os: "Android",
+        real_mobile: true,
+        os_version: "9.0",
+        build: "Angular JS App - Local",
+      },
+      bs_ios: {
+        base: "BrowserStack",
+        device: "iPhone XS",
+        os: "ios",
+        real_mobile: true,
+        os_version: "12",
+        build: "Angular JS App - Local",
+      },
     },
 
     captureTimeout: 3e5,
@@ -96,8 +97,8 @@ module.exports = function (config) {
       "bs_chrome_mac",
       "bs_firefox_win10",
       "bs_chrome_win10",
-      // "bs_android",
-      // "bs_ios",
+      "bs_android",
+      "bs_ios",
     ],
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
