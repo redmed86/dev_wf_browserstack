@@ -25,8 +25,8 @@ node{
       }
     }
   }
-  
-  if(env.BRANCH_NAME === 'develop') {
+
+  if("${env.BRANCH_NAME}" == "develop") {
     stage('Execute E2E Tests on BS'){
       echo 'Place e2e test code here'
       // nodejs('nodejs-14.2') {
