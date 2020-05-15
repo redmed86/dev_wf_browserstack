@@ -25,28 +25,30 @@ node{
       }
     }
   }
+  
+  if(env.BRANCH_NAME === 'develop') {
+    stage('Execute E2E Tests on BS'){
+      echo 'Place e2e test code here'
+      // nodejs('nodejs-14.2') {
+      //   browserstack('007ecb9e-8b9e-453d-9e2e-cb9d4e894383') {
+      //     sh 'npm run wdio-bs'
+      //   } 
+      // }
+    }
+    
+    stage('JUnit Reporter') {
+      sh 'ls -lah app/karma_junit_reports/'
+      junit 'app/karma_junit_reports/*.xml'
+    }
 
-  stage('Execute E2E Tests on BS'){
-    echo 'Place e2e test code here'
-    // nodejs('nodejs-14.2') {
-    //   browserstack('007ecb9e-8b9e-453d-9e2e-cb9d4e894383') {
-    //     sh 'npm run wdio-bs'
-    //   } 
-    // }
+    stage('Product Owner Review') {
+        input 'Product Owner Review'
+    }  
   }
   
-
   if ("${env.BRANCH_NAME}".startsWith('release/') || "${env.BRANCH_NAME}".startsWith('hotfix')){
-    stage('Product Owner Review') {
+    stage('Product Owner Review of Visual Testing') {
       input 'Waiting for Visual Testing analysis'
     }
-  }
-  stage('JUnit Reporter') {
-    sh 'ls -lah app/karma_junit_reports/'
-    junit 'app/karma_junit_reports/*.xml'
-  }
-
-  stage('Product Owner Review') {
-      input 'Product Owner Review'
-  }   
+  }  
 }
