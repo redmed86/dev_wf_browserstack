@@ -23,7 +23,7 @@ exports.config = {
   // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
   // directory is where your package.json resides, so `wdio` will be called from there.
   //
-  specs: ["e2e-tests/specs/view1.spec.js"],
+  specs: ["e2e-tests/specs/wdio.scenarios.spec.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -54,33 +54,33 @@ exports.config = {
     {
       browser: "chrome",
       name: "Angular Sample - Local Site Test Automation",
-      "browserstack.local": true,
+      "browserstack.local": false,
       build: "Angular JS App - Local",
       "browserstack.networkLogs": true,
       "browserstack.console": "errors",
     },
-    // {
-    //   browser: "firefox",
-    //   name: "Angular Sample - Local Site Test Automation",
-    //   "browserstack.local": true,
-    //   build: "Angular JS App - Local",
-    //   "browserstack.networkLogs": true,
-    //   "browserstack.console": "errors",
-    // },
-    // {
-    //   device: "iPhone XS",
-    //   name: "MOBILE Angular Sample - Local Site Test Automation",
-    //   "browserstack.local": true,
-    //   build: "Angular JS App - Local",
-    //   os_version: 13,
-    //   real_mobile: true,
-    //   "browserstack.networkLogs": true,
-    //   "browserstack.console": "errors",
-    // },
+    {
+      browser: "firefox",
+      name: "Angular Sample - Local Site Test Automation",
+      "browserstack.local": false,
+      build: "Angular JS App - Local",
+      "browserstack.networkLogs": true,
+      "browserstack.console": "errors",
+    },
+    {
+      device: "iPhone XS",
+      name: "MOBILE Angular Sample - Local Site Test Automation",
+      "browserstack.local": false,
+      build: "Angular JS App - Local",
+      os_version: 13,
+      real_mobile: true,
+      "browserstack.networkLogs": true,
+      "browserstack.console": "errors",
+    },
     // {
     //   device: "Samsung Galaxy S8 Plus",
     //   name: "MOBILE Angular Sample - Local Site Test Automation",
-    //   "browserstack.local": true,
+    //   "browserstack.local": false,
     //   build: "Angular JS App - Local",
     //   os_version: 9.0,
     //   real_mobile: true,

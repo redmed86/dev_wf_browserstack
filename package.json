@@ -12,7 +12,6 @@
     "@wdio/mocha-framework": "^5.18.7",
     "@wdio/spec-reporter": "^5.22.4",
     "@wdio/sync": "^5.20.1",
-    "bower": "^1.8.8",
     "chromedriver": "^79.0.3",
     "http-server": "^0.9.0",
     "jasmine-core": "^2.4.1",
@@ -23,7 +22,6 @@
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^1.1.2",
     "karma-junit-reporter": "^0.4.1",
-    "karma-sauce-launcher": "1.2.0",
     "protractor": "5.4.2",
     "wdio-chromedriver-service": "^5.0.2"
   },
@@ -33,7 +31,7 @@
     "postupdate-deps": "bower update",
     "lint": "./node_modules/jshint/bin/jshint app/ --exclude /app/bower_components",
     "prestart": "npm install",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",
@@ -44,11 +42,13 @@
     "protractor-bs": "protractor e2e-tests/bs.protractor.conf.js",
     "update-index-async": "node -e \"var fs=require('fs'),indexFile='app/index-async.html',loaderFile='app/bower_components/angular-loader/angular-loader.min.js',loaderText=fs.readFileSync(loaderFile,'utf-8').split(/sourceMappingURL=angular-loader.min.js.map/).join('sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map'),indexText=fs.readFileSync(indexFile,'utf-8').split(/\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/).join('//@@NG_LOADER_START@@\\n'+loaderText+'    //@@NG_LOADER_END@@');fs.writeFileSync(indexFile,indexText);\"",
     "wdio-local": "./node_modules/.bin/wdio run e2e-tests/wdio.conf.js",
-    "wdio-bs": "./node_modules/.bin/wdio run e2e-tests/bs.wdio.conf.js"
+    "wdio-bs-develop": "./node_modules/.bin/wdio run e2e-tests/develop.bs.wdio.conf.js",
+    "wdio-bs-local": "./node_modules/.bin/wdio run e2e-tests/local.bs.wdio.conf.js"
   },
   "dependencies": {
     "express": "^4.17.1",
     "method-override": "^2.3.10",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "bower": "^1.8.8"
   }
 }
