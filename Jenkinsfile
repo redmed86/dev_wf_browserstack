@@ -45,11 +45,8 @@ node{
     sh 'ls -lah app/karma_junit_reports/'
     junit 'app/karma_junit_reports/*.xml'
   }
-  stage('Full Regression'){
-      echo 'run test code here'
-  }
 
   stage('Product Owner Review') {
-      input 'Product Owner Gotta Review This Shit!'
+      input 'Product Owner Review'
   }   
 }
