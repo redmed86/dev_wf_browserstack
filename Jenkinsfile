@@ -10,38 +10,46 @@ node{
   }
 
   stage ('Build') {
-    //build project dependencies
-    sh 'npm -v'
-    sh 'npm install'
+    nodejs('nodejs-14.2') {
+      //build project dependencies
+      sh 'npm -v'
+      sh 'npm install'
+    }
   }
 
   stage ('Unit Tests') {
-    browserstack('331697ad-449f-4664-bde1-a79f5a14f73e') {
-      //run KarmaJS tests and then exit process with singleRun command
-      sh 'npm run test-single-run'
-    }
-  }
-
-  if ("${env.BRANCH_NAME}"=="develop"){
-    withCredentials([usernamePassword(credentialsId: 'derek_pcf_creds', passwordVariable: 'PCF_PASS', usernameVariable: 'PCF_USER')]) {
-      stage('Deploy to Development Environment') {
-        sh 'cf login -a https://api.run.pivotal.io -u ${PCF_USER} -p ${PCF_PASS} -s Development'
-        sh 'cf push -f config/dev/manifest.yml'
-      }
-    }
-
-    stage('Execute E2E Tests on BS'){
-      browserstack('331697ad-449f-4664-bde1-a79f5a14f73e') {
-        sh 'npm run wdio-bs'
+    nodejs('nodejs-14.2') {
+      browserstack('007ecb9e-8b9e-453d-9e2e-cb9d4e894383') {
+        //run KarmaJS tests and then exit process with singleRun command
+        sh 'npm run test-single-run'
       }
     }
   }
+
+  stage('Execute E2E Tests on BS'){
+    echo 'Place e2e test code here'
+    // nodejs('nodejs-14.2') {
+    //   browserstack('007ecb9e-8b9e-453d-9e2e-cb9d4e894383') {
+    //     sh 'npm run wdio-bs'
+    //   } 
+    // }
+  }
+  
 
   if ("${env.BRANCH_NAME}".startsWith('release/') || "${env.BRANCH_NAME}".startsWith('hotfix')){
     stage('Product Owner Review') {
       input 'Waiting for Visual Testing analysis'
     }
   }
+  stage('JUnit Reporter') {
+    sh 'ls -lah app/karma_junit_reports/'
+    junit 'app/karma_junit_reports/*.xml'
+  }
+  stage('Full Regression'){
+      echo 'run test code here'
+  }
 
-  
+  stage('Product Owner Review') {
+      input 'Product Owner Gotta Review This Shit!'
+  }   
 }

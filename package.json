@@ -12,7 +12,6 @@
     "@wdio/mocha-framework": "^5.18.7",
     "@wdio/spec-reporter": "^5.22.4",
     "@wdio/sync": "^5.20.1",
-    "bower": "^1.8.8",
     "chromedriver": "^79.0.3",
     "http-server": "^0.9.0",
     "jasmine-core": "^2.4.1",
@@ -23,7 +22,6 @@
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^1.1.2",
     "karma-junit-reporter": "^0.4.1",
-    "karma-sauce-launcher": "1.2.0",
     "protractor": "5.4.2",
     "wdio-chromedriver-service": "^5.0.2"
   },
@@ -33,7 +31,7 @@
     "postupdate-deps": "bower update",
     "lint": "./node_modules/jshint/bin/jshint app/ --exclude /app/bower_components",
     "prestart": "npm install",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",
@@ -49,6 +47,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "method-override": "^2.3.10",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "bower": "^1.8.8"
   }
 }
