@@ -42,7 +42,8 @@
     "protractor-bs": "protractor e2e-tests/bs.protractor.conf.js",
     "update-index-async": "node -e \"var fs=require('fs'),indexFile='app/index-async.html',loaderFile='app/bower_components/angular-loader/angular-loader.min.js',loaderText=fs.readFileSync(loaderFile,'utf-8').split(/sourceMappingURL=angular-loader.min.js.map/).join('sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map'),indexText=fs.readFileSync(indexFile,'utf-8').split(/\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/).join('//@@NG_LOADER_START@@\\n'+loaderText+'    //@@NG_LOADER_END@@');fs.writeFileSync(indexFile,indexText);\"",
     "wdio-local": "./node_modules/.bin/wdio run e2e-tests/wdio.conf.js",
-    "wdio-bs": "./node_modules/.bin/wdio run e2e-tests/bs.wdio.conf.js"
+    "wdio-bs-develop": "./node_modules/.bin/wdio run e2e-tests/develop.bs.wdio.conf.js",
+    "wdio-bs-local": "./node_modules/.bin/wdio run e2e-tests/local.bs.wdio.conf.js"
   },
   "dependencies": {
     "express": "^4.17.1",
