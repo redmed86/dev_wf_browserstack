@@ -26,14 +26,14 @@ node{
     }
   }
 
-  if("${env.BRANCH_NAME}" == "develop") {
+  if("${env.BRANCH_NAME}".startsWith('feature/') || "${env.BRANCH_NAME}" == "develop") {
     stage('Execute E2E Tests on BS'){
-      echo 'Place e2e test code here'
-      // nodejs('nodejs-14.2') {
-      //   browserstack('007ecb9e-8b9e-453d-9e2e-cb9d4e894383') {
-      //     sh 'npm run wdio-bs'
-      //   } 
-      // }
+      // echo 'Place e2e test code here'
+      nodejs('nodejs-14.2') {
+        browserstack('007ecb9e-8b9e-453d-9e2e-cb9d4e894383') {
+          sh 'npm run wdio-bs'
+        } 
+      }
     }
     
     stage('JUnit Reporter') {
