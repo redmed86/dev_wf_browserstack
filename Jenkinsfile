@@ -31,6 +31,7 @@ node{
       // echo 'Place e2e test code here'
       nodejs('nodejs-14.2') {
         browserstack('007ecb9e-8b9e-453d-9e2e-cb9d4e894383') {
+          sh 'npm run start4ci'
           sh 'npm run wdio-bs'
         } 
       }
