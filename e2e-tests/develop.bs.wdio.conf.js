@@ -1,3 +1,5 @@
+var browserstack = require("browserstack-local");
+
 exports.config = {
   user: process.env.BROWSERSTACK_USERNAME,
   key: process.env.BROWSERSTACK_ACCESS_KEY,
@@ -54,24 +56,27 @@ exports.config = {
     {
       browser: "chrome",
       name: "Angular Sample - Local Site Test Automation",
-      "browserstack.local": false,
+      "browserstack.local": true,
       build: "Angular JS App - Local",
+      project: "Derek Demos",
       "browserstack.networkLogs": true,
       "browserstack.console": "errors",
     },
     {
       browser: "firefox",
       name: "Angular Sample - Local Site Test Automation",
-      "browserstack.local": false,
+      "browserstack.local": true,
       build: "Angular JS App - Local",
+      project: "Derek Demos",
       "browserstack.networkLogs": true,
       "browserstack.console": "errors",
     },
     {
       device: "iPhone XS",
       name: "MOBILE Angular Sample - Local Site Test Automation",
-      "browserstack.local": false,
+      "browserstack.local": true,
       build: "Angular JS App - Local",
+      project: "Derek Demos",
       os_version: 13,
       real_mobile: true,
       "browserstack.networkLogs": true,
@@ -80,7 +85,7 @@ exports.config = {
     // {
     //   device: "Samsung Galaxy S8 Plus",
     //   name: "MOBILE Angular Sample - Local Site Test Automation",
-    //   "browserstack.local": false,
+    //   "browserstack.local": true,
     //   build: "Angular JS App - Local",
     //   os_version: 9.0,
     //   real_mobile: true,
@@ -173,8 +178,19 @@ exports.config = {
    * @param {Object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
-  // onPrepare: function (config, capabilities) {
-  // },
+  // Code to start browserstack local before start of test
+  onPrepare: function (config, capabilities) {
+    console.log("Connecting local");
+    return new Promise(function (resolve, reject) {
+      exports.bs_local = new browserstack.Local();
+      exports.bs_local.start({ key: exports.config.key }, function (error) {
+        if (error) return reject(error);
+        console.log("Connected. Now testing...");
+
+        resolve();
+      });
+    });
+  },
   /**
    * Gets executed just before initialising the webdriver session and test framework. It allows you
    * to manipulate configurations depending on the capability or spec.
